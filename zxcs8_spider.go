@@ -8,15 +8,12 @@ import (
 )
 
 const ROOT_URL string = "http://www.zxcs.me/map.html"
-const LINE_1 string = "线路一"
-const LINE_2 string = "线路二"
-const ZXCS8_RECORD_UP string = "http://www.zxcs.me/record/201906"
-const ZXCS8_RECORD_DOWN string = "http://www.zxcs.me/record/201902"
+const OUT_FILE string = "D:\\book\\zxcs8 20190514"
 
 func zxcs8() {
 
-	// get_zxcs8_latest(ROOT_URL)
-	get_zxcs_download("http://www.zxcs.me/post/11517")
+	get_zxcs8_latest(ROOT_URL)
+	// get_zxcs_download("http://www.zxcs.me/post/11517")
 }
 
 func get_zxcs8_latest(ori_url string) {
@@ -50,6 +47,7 @@ func get_zxcs_rar(ori_url string) { //downfile
 		line := s.Text()
 		url := s.AttrOr("href", "")
 		fmt.Printf("line: %s  url: %s\n", line, url)
+		write_file(url, OUT_FILE+line+".txt")
 
 	})
 }
