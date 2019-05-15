@@ -8,7 +8,25 @@ import (
 	"os"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tealeg/xlsx"
 )
+
+func write_excel() {
+	excelFileName := "test.xlsx"
+	xlFile, err := xlsx.OpenFile(excelFileName)
+	if err != nil {
+		fmt.Printf("open failed: %s\n", err)
+	}
+	for _, sheet := range xlFile.Sheets {
+		fmt.Printf("Sheet Name: %s\n", sheet.Name)
+		for _, row := range sheet.Rows {
+			for _, cell := range row.Cells {
+				text := cell.String()
+				fmt.Printf("%s\n", text)
+			}
+		}
+	}
+}
 
 func write_file(content, filepath string) {
 
