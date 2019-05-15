@@ -1,5 +1,5 @@
 // tools
-package main
+package spider
 
 import (
 	"fmt"

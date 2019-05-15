@@ -1,5 +1,5 @@
 // zxcs8_spider
-package main
+package spider
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 const ROOT_URL string = "http://www.zxcs.me/map.html"
 const OUT_FILE string = "D:\\book\\zxcs8 20190514"
 
-func zxcs8() {
+func Zxcs8() {
 
 	get_zxcs8_latest(ROOT_URL)
 	// get_zxcs_download("http://www.zxcs.me/post/11517")
