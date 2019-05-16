@@ -90,7 +90,7 @@ func zxcs_get_download(ori_url string) { //down_2
 func zxcs_get_rar(ori_url string) { //downfile
 
 	//获取书籍下载链家
-	get_html_content(ori_url, "body .wrap .content .downfile  a").Each(func(i int, s *goquery.Selection) {
+	get_html_content(ori_url, "body .wrap .content .downfile a").Each(func(i int, s *goquery.Selection) {
 		line := s.Text()
 		url := s.AttrOr("href", "")
 		fmt.Printf("line: %s  url: %s\n", line, url)
