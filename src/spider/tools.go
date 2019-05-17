@@ -11,9 +11,9 @@ import (
 	"github.com/tealeg/xlsx"
 )
 
-func write_excel() {
-	excelFileName := "test.xlsx"
-	xlFile, err := xlsx.OpenFile(excelFileName)
+func read_excel(filepath string) {
+
+	xlFile, err := xlsx.OpenFile(filepath)
 	if err != nil {
 		fmt.Printf("open failed: %s\n", err)
 	}
@@ -28,6 +28,30 @@ func write_excel() {
 	}
 }
 
+func save2excel(data [][]string, filepath string) {
+
+	file := xlsx.NewFile()
+	sheet, err := file.AddSheet("Sheet1")
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+	for i, row_data := range data {
+		row := sheet.AddRow()
+		row.SetHeightCM(1)
+		fmt.Printf("index %d  ", i)
+		for j, cell_value := range row_data {
+			cell := row.AddCell()
+			cell.Value = cell_value
+			fmt.Printf("  %d %10s  ", j, cell_value)
+		}
+		fmt.Printf("\n")
+	}
+	err = file.Save(filepath)
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+}
+
 func write_file(content, filepath string) {
 
 	fw, err := os.OpenFile(filepath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
@@ -36,7 +60,6 @@ func write_file(content, filepath string) {
 	}
 	defer fw.Close()
 	fw.WriteString(content + "\r\n")
-
 }
 
 func get_html_content(ori_url, selector string) *goquery.Selection {
