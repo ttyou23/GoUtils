@@ -55,8 +55,7 @@ func fangxie_info(ori_url, zone string) {
 	item := make([]string, 0)
 	item = append(item, zone)
 
-	selection := get_html_content(ori_url, "body .main .infor p") //MsoNormal
-	selection.EachWithBreak(func(i int, s *goquery.Selection) bool {
+	get_html_content(ori_url, "body .main .infor p").Each(func(i int, s *goquery.Selection) {
 		text := strings.ReplaceAll(strings.ReplaceAll(s.Text(), "\n", ""), " ", "")
 		// fmt.Printf("fangxie_info: %s len: %d\n", text, len(text))
 		if strings.Index(text, "项目名称") > 0 {
@@ -81,8 +80,6 @@ func fangxie_info(ori_url, zone string) {
 			item = append(item, url)
 			write_file(url, FANGXIE_HOUSE_URL)
 		}
-
-		return true
 	})
 
 	if len(item) < 10 {

@@ -1,10 +1,10 @@
-// pv190
+// thread_pool
 package spider
 
 import (
 	"fmt"
 )
 
-func PV190() {
+func test() {
 	fmt.Println("Hello World!")
 }
