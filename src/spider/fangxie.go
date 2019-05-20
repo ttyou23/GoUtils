@@ -8,7 +8,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-const ROOT_URL_FANGXIE string = "https://www.cdfangxie.com/"
+const ROOT_URL_FANGXIE string = "https://www.cdfangxie.com"
 const FANGXIE_HOUSE_EXCEL = "fangxie.xlsx"
 const FANGXIE_HOUSE_URL = "fangxie_url.txt"
 
@@ -39,13 +39,13 @@ func fangxie_sort(ori_url string) {
 		zone := title[:strings.Index(title, "|")]
 		fmt.Printf("fangxie_sort: %s - %s\n", zone, url)
 		fangxie_info(url, zone)
-		return false
+		return true
 	})
 
 	selection.Find(".pages2 a:contains('下一页')").Each(func(i int, s *goquery.Selection) {
 		url := ROOT_URL_FANGXIE + s.AttrOr("href", "")
 		fmt.Printf("fangxie_sort: %s - %s\n", s.Text(), url)
-		// fangxie_sort(url)
+		fangxie_sort(url)
 	})
 }
 
@@ -87,6 +87,15 @@ func fangxie_info(ori_url, zone string) {
 	if len(item) < 10 {
 		item = append(item, "")
 	}
+	if len(item) < 10 {
+		item = append(item, "")
+	}
 	item = append(item, ori_url)
 	houses = append(houses, item)
+}
+
+func format_url(s *goquery.Selection) string {
+	url := s.AttrOr("href", "")
+	return url
+	// if string
 }

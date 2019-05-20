@@ -5,6 +5,6 @@ import (
 	"fmt"
 )
 
-func main() {
+func PV190() {
 	fmt.Println("Hello World!")
 }
