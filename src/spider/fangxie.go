@@ -39,14 +39,13 @@ func fangxie_sort(ori_url string) {
 		zone := title[:strings.Index(title, "|")]
 		fmt.Printf("fangxie_sort: %s - %s\n", zone, url)
 		fangxie_info(url, zone)
-		return true
+		return false
 	})
 
-	selection.Find(".pages2 a:contains('下一页')").EachWithBreak(func(i int, s *goquery.Selection) bool {
+	selection.Find(".pages2 a:contains('下一页')").Each(func(i int, s *goquery.Selection) {
 		url := ROOT_URL_FANGXIE + s.AttrOr("href", "")
 		fmt.Printf("fangxie_sort: %s - %s\n", s.Text(), url)
-		fangxie_sort(url)
-		return false
+		// fangxie_sort(url)
 	})
 }
 
