@@ -28,7 +28,7 @@ func read_excel(filepath string) {
 	}
 }
 
-func save2excel(data [][]string, filepath string) {
+func Save2excel(data [][]string, filepath string) {
 
 	file := xlsx.NewFile()
 	sheet, err := file.AddSheet("Sheet1")

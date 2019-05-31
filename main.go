@@ -2,7 +2,7 @@
 package main
 
 import (
-	"fileutils"
+	"fileformat"
 	"fmt"
 	"spider"
 )
@@ -14,12 +14,19 @@ func test_func(param map[string]string) {
 func main() {
 	fmt.Println("==================================开始======================================")
 
-	var cmd string
-
 	// param := make(map[string]string)
 	// param["key"] = "hello world!!"
 	// spider.Start_work(test_func, param, 1)
 
+	root_cmd()
+
+	fmt.Println("==================================结束======================================")
+
+}
+
+func root_cmd() {
+
+	var cmd string
 	for true {
 		fmt.Println("\n=====================主菜单==========================")
 		fmt.Println("请输入命令：0(退出程序) 1(爬虫) 2(文件处理)")
@@ -28,18 +35,14 @@ func main() {
 		if cmd == "0" {
 			break
 		} else if cmd == "1" {
-			fun_spider()
+			cmd_spider()
 		} else if cmd == "2" {
-			fun_file_format()
+			cmd_file_format()
 		}
-
 	}
-
-	fmt.Println("==================================结束======================================")
-
 }
 
-func fun_spider() {
+func cmd_spider() {
 
 	var cmd string
 	for true {
@@ -62,12 +65,12 @@ func fun_spider() {
 
 }
 
-func fun_file_format() {
+func cmd_file_format() {
 
 	var cmd, path string
 	for true {
 		fmt.Println("\n====================文件处理=========================")
-		fmt.Println("请输入文件处理命令：0(回到主菜单) 1(加密) 2(解密)")
+		fmt.Println("请输入文件处理命令：0(回到主菜单) 1(加密) 2(解密) 3(txt转Excel)")
 		fmt.Scanln(&cmd)
 		if cmd == "0" {
 			return
@@ -77,9 +80,11 @@ func fun_file_format() {
 		fmt.Scanln(&path)
 
 		if cmd == "1" {
-			fileutils.FileFormat(path, true)
+			fileformat.FileFormat(path, true)
 		} else if cmd == "2" {
-			fileutils.FileFormat(path, false)
+			fileformat.FileFormat(path, false)
+		} else if cmd == "3" {
+			fileformat.FormatExcel(path)
 		}
 	}
 }

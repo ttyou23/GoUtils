@@ -18,7 +18,7 @@ var HOUSE_TITLE []string = []string{"区域", "项目名称", "项目咨询电�
 func Fangxie() {
 	houses = append(houses, HOUSE_TITLE)
 	fangxie_tag()
-	save2excel(houses, FANGXIE_HOUSE_EXCEL)
+	Save2excel(houses, FANGXIE_HOUSE_EXCEL)
 }
 
 func fangxie_tag() {

@@ -1,5 +1,5 @@
 // base256
-package fileutils
+package fileformat
 
 import (
 	"bytes"
